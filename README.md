@@ -16,7 +16,7 @@ Originally intended as a Streamlit-based interface, it has been reworked to run 
 ## Usage Example
 
 ```python
-import nerna
+from nerna import NERAnnotator
 
 # List of texts to annotate
 texts = [
@@ -25,11 +25,12 @@ texts = [
 ]
 
 # Initialize annotation
-annotator = nerna(texts)
+annotator = NERAnnotator(texts)
 
 # Render the interactive annotation interface
 annotator.render()
 ```
+![NERNA Screenshot](docs/img/image.png)
 
 ---
 
