@@ -1,6 +1,6 @@
 [project]
 name = "nerna"
-version = "0.1.1"
+version = "0.1.2"
 description = "NERNA is a lightweight tool for annotating named entities directly within Python notebooks, ideal for quick and interactive NER tasks without the need for deployment or external servers."
 authors = [
     {name = "danttis",email = "juniordante01@gmail.com"}
