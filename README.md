@@ -33,7 +33,7 @@ annotator = NERAnnotator(texts)
 # Render the interactive annotation interface
 annotator.render()
 ```
-![NERNA Screenshot](docs/img/image.png)
+![NERNA Screenshot](https://raw.githubusercontent.com/danttis/NER-Notebook-Annotation/refs/heads/main/docs/img/image.png)
 
 ---
 
