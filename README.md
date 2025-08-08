@@ -1,5 +1,8 @@
 # NERNA (NER Notebook Annotation)
 
+Follow the official repository: [NER-Notebook-Annotation - GitHub](https://github.com/danttis/NER-Notebook-Annotation/) 	
+
+
 **NERNA** is a lightweight package designed for **Named Entity Recognition (NER) annotation** directly within Python notebooks.
 
 Originally intended as a Streamlit-based interface, it has been reworked to run natively inside notebook environments (such as Jupyter, Google Colab, Databricks, etc.). This makes it easier to use without requiring deployment of web applications or cloud server contracts — ideal for occasional or exploratory use.
