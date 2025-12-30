@@ -39,6 +39,38 @@ annotator.render()
 
 ## Notes
 
-* Annotated results are not automatically returned to Python. If you need to save or extract annotations, you’ll need to implement a custom mechanism to capture them.
+4. **Retrieve annotations:**
+
+   There are two ways to retrieve the annotated data back into Python:
+
+   **Option A: Export to Python Variable (Recommended for Colab/Jupyter)**
+   
+   Pass the name of your variable to the `render` method:
+   ```python
+   # 1. Initialize
+   annotator = NERAnnotator(texts)
+   
+   # 2. Render with variable name
+   annotator.render(variable_name="annotator")
+   ```
+   *   In the UI, click the **"🐍 Export to Python"** button.
+   *   Access the data in Python:
+   ```python
+   # After clicking the button:
+   print(annotator.annotations)
+   ```
+
+   **Option B: Load from JSON (Fallback)**
+   
+   *   Click **"📥 Download All"** in the UI to save a `.json` file.
+   *   Load it in Python:
+   ```python
+   from nerna import load_annotations_from_json
+   
+   data = load_annotations_from_json("path/to/all_annotations_....json")
+   print(data)
+   ```
+
+* Annotated results are not automatically returned to Python unless you use the "Export to Python" button.
 * Ideal for manual review, small-scale labeling tasks, or quick experimentation in NLP workflows.
 
