@@ -221,6 +221,7 @@ class NERAnnotator():
                 function saveEntities() {{
                     try {{
                         localStorage.setItem(storageKey, JSON.stringify(entities));
+                        syncToPython(); // Trigger auto-sync
                     }} catch (e) {{
                         console.error("Error saving to localStorage:", e);
                     }}
@@ -505,6 +506,33 @@ class NERAnnotator():
                 }};
             }}
             
+            let syncTimeout;
+            function syncToPython() {{
+                if (!variableName) return;
+
+                clearTimeout(syncTimeout);
+                syncTimeout = setTimeout(() => {{
+                    const allAnnotations = getAllAnnotations();
+                    const dataStr = JSON.stringify(allAnnotations);
+
+                    // Try Google Colab
+                    if (typeof google !== 'undefined' && google.colab) {{
+                        google.colab.kernel.invokeFunction(
+                            'nerna_export_' + sessionId, 
+                            [allAnnotations], 
+                            {{}}
+                        );
+                        console.log("Auto-synced to Python (Colab)");
+                    }} 
+                    // Try Standard Jupyter (IPython)
+                    else if (typeof IPython !== 'undefined' && IPython.notebook) {{
+                        const command = variableName + ".set_annotations(" + dataStr + ")";
+                        IPython.notebook.kernel.execute(command);
+                        console.log("Auto-synced to Python (Jupyter)");
+                    }}
+                }}, 1000); // 1 second debounce
+            }}
+
             function getAllAnnotations() {{
                 const allAnnotations = [];
                 for (let i = 0; i < texts.length; i++) {{
